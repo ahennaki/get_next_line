@@ -1,37 +1,62 @@
-# get_next_line
+# Get Next Line
 
-This project will not only allow you to add a very convenient function to your collection, but it will also make you learn a highly interesting new concept in C programming: static variables.
+The Get Next Line project is a function that reads a line from a file descriptor in C. It allows you to read text files and standard input, one line at a time, using repeated calls to the `get_next_line()` function.
 
+## Table of Contents
 
-• Repeated calls (e.g., using a loop) to your get_next_line() function should let you read the text file pointed to by the file descriptor, one line at a time.
+- [Introduction](#introduction)
+- [Usage](#usage)
+- [Function Prototype](#function-prototype)
+- [Return Value](#return-value)
+- [Buffer Size](#buffer-size)
+- [Compiling](#compiling)
+- [Bonus Part](#bonus-part)
 
-• Your function should return the line that was read. If there is nothing else to read or if an error occurred, it should return NULL.
+## Introduction
 
-• Make sure that your function works as expected both when reading a file and when reading from the standard input.
+The Get Next Line function provides a convenient way to read lines from a file descriptor in C. It reads the file or standard input line by line, allowing you to process the input one line at a time.
 
-• Please note that the returned line should include the terminating \n character, except if the end of file was reached and does not end with a \n character.
+## Usage
 
-• Your header file get_next_line.h must at least contain the prototype of the get_next_line() function.
+To use the Get Next Line function in your project, you need to include the `get_next_line.h` header file in your source code. The function prototype is as follows:
 
-• Add all the helper functions you need in the get_next_line_utils.c file.
+    char *get_next_line(int fd);
+    
+The fd parameter is the file descriptor from which you want to read the line. It can be a file descriptor for a file or the standard input (0).
 
-    A good start would be to know what a static variable is.
+## Function Prototype
 
-• Because you will have to read files in get_next_line(), add this option to your compiler call: -D BUFFER_SIZE=n It will define the buffer size for read(). The buffer size value will be modified by your peer-evaluators and the Moulinette in order to test your code.
+The function prototype for Get Next Line is:
 
-• We consider that get_next_line() has an undefined behavior if the file pointed to by the file descriptor changed since the last call whereas read() didn’t reach the end of file.
+    char *get_next_line(int fd);
 
-• We also consider that get_next_line() has an undefined behavior when reading a binary file. However, you can implement a logical way to handle this behavior if you want to.
+## Return Value
 
-# BONUS
+The Get Next Line function returns a line read from the file descriptor. It returns NULL if there is nothing else to read or if an error occurred.
 
-This project is straightforward and doesn’t allow complex bonuses. However, we trust your creativity. If you completed the mandatory part, give a try to this bonus part.
+The returned line includes the terminating newline character (\n) except when the end of file is reached and the line doesn't end with a newline character.
 
-Here are the bonus part requirements:
+## Buffer Size
 
-• Develop get_next_line() using only one static variable.
+The buffer size for reading from the file descriptor can be defined using the -D BUFFER_SIZE=n flag when compiling your code. For example:
 
-• Your get_next_line() can manage multiple file descriptors at the same time.
+    cc -Wall -Wextra -Werror -D BUFFER_SIZE=32 <files>.c
 
-For example, if you can read from the file descriptors 3, 4 and 5, you should be able to read from a different fd per call without losing the reading thread of each file descriptor or returning a line from another fd. It means that you should be able to call get_next_line() to read from fd 3, then fd 4, then 5, then once again 3, once again 4, and so forth.
+The buffer size value can be modified by peer-evaluators and the grading system to test your code.
 
+## Compiling
+
+To compile your code with the Get Next Line function, you can use the following command:
+
+    cc -Wall -Wextra -Werror -D BUFFER_SIZE=32 <files>.c
+
+Make sure to replace <files>.c with your source code files.
+
+## Bonus Part
+
+The Get Next Line project also includes a bonus part that allows you to enhance the function. The bonus requirements include:
+
+- Implementing get_next_line() using only one static variable
+- Managing multiple file descriptors simultaneously
+  
+To include the bonus part in your project, use the _bonus suffix for the bonus files (get_next_line_bonus.c, get_next_line_bonus.h, get_next_line_utils_bonus.c).
